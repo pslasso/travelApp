@@ -14,13 +14,28 @@ main {
     background-color: rgba(0, 13, 60, 0.5);
 }
 
-section {
+.app {
+    display: grid;
     max-width: 800px;
-    margin: 50px auto;
+    margin: auto;
+    grid-template-areas: "tl tl tl tl tl tl tl tl" "img img img img img img fr fr" "img img img img img img res res";
+    gap: 20px;
+    padding: 10px;
+    border: 1px solid whitesmoke;
 }
 
 #analysis {
     border: 1px solid whitesmoke;
     border-radius: 3px;
     padding: 40px;
+}
+
+#image {
+    grid-area: img;
+    border: 1px solid whitesmoke;
+    height: auto;
+}
+
+#results {
+    grid-area: res;
 }

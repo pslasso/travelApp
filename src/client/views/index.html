@@ -3,43 +3,50 @@
 
 <head>
     <meta charset="utf-8">
-    <title>NLP</title>
+    <title>Travel Planner</title>
     <script type="text/javascript" srs="../../../dist/main.js"></script>
 </head>
 
 <body>
 
     <header>
-        <div class="title">
-            SENTIMENT ANALISYS APP
-        </div>
-        <div class="">
-
-        </div>
     </header>
 
     <main>
-        <section>
 
-            <form class="" onsubmit="return handleSubmit(event)">
-                <label>Enter yout text:</label>
-                <input id="name" type="text" name="input" rows="30" cols="1" contenteditable="true" value="" placeholder="Text">
-                <input type="submit" name="" value="Submit" id="button" onclick="return Client.handleSubmit(event)">
-            </form>
+        <section class="app">
 
-            <section>
+            <div id=title>
+                <h2>Travel Planner</h2>
+            </div>
 
-                <section>
-                    <div id="analysis">
-                        <strong>Sentiment Analisys Results:</strong>
-                        <div><br></div>
-                        <div id="agreement"></div>
-                        <div id="confidence"></div>
-                        <div id="irony"></div>
-                        <div id="score_tag"></div>
-                        <div id="subjectivity"></div>
-                    </div>
-                </section>
+            <section id="image">
+                <img src="" />
+            </section>
+
+            <section id="form">
+                <form class="" onsubmit="return handleSubmit(event)">
+                    <label for="city">My trip to:</label>
+                    <input id="city" type="text" name="input" contenteditable="true" value="" placeholder="City"><br>
+                    <label for="departing">Departing:</label>
+                    <input id="departing" type="date" name="date" value="" valueAsNumber=""><br>
+                    <input type="submit" name="" value="Save Trip" id="button" onclick="return Client.handleSubmit(event)">
+                    <input type="submit" name="" value="Remove Trip" id="button" onclick="">
+                </form>
+            </section>
+
+            <section id=results>
+                <div id="analysis">
+                    <strong>Sentiment Analisys Results:</strong>
+                    <div><br></div>
+                    <div id="agreement"></div>
+                    <div id="confidence"></div>
+                    <div id="irony"></div>
+                    <div id="score_tag"></div>
+                    <div id="subjectivity"></div>
+                </div>
+            </section>
+        </section>
     </main>
 
 </body>

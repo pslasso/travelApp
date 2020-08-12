@@ -1,6 +1,3 @@
-let baseURL = 'https://api.meaningcloud.com/sentiment-2.1';
-let lang = '&lang=en';
-
 const bodyParser = require('body-parser');
 var axios = require('axios');
 var path = require('path');
@@ -29,6 +26,7 @@ const cors = require('cors');
 app.use(cors());
 
 
+
 // TODO-ROUTES!
 
 app.get('/', function(req, res) {
@@ -36,28 +34,48 @@ app.get('/', function(req, res) {
 });
 
 
-app.post('/analyse', async(req, res) => {
+app.post('/coords', async(req, res) => {
     try {
-        const analyse = await axios.post(`${baseURL}?key=${apiKey}${lang}&txt=${req.body.formText}&model=general`);
+        const getCoords = await axios.post(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=pslasso`);
 
-        const { data } = analyse;
+        const { data } = getCoords;
 
-        const { score_tag } = data;
-        const { agreement } = data;
-        const { subjectivity } = data;
-        const { confidence } = data;
-        const { irony } = data;
+        const { lat } = data;
+        const { lng } = data;
+        const { countryName } = data;
 
-        sentiment = {
-            score_tag,
-            agreement,
-            subjectivity,
-            confidence,
-            irony,
+        cords = {
+            lat: data.geonames[0].lat,
+            lng: data.geonames[0].lng,
+            countryName: data.geonames[0].countryName
         };
 
-        res.send(sentiment);
-        console.log(data)
+        res.send(cords);
+        console.log(data);
+
+    } catch (error) {
+        console.log(`${error}`);
+    }
+});
+
+app.post('/weather', async(req, res) => {
+    try {
+        const getWeather = await axios.post(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.body.lat}&lon=${req.body.lng}&days=${req.body.days}&key=416b04807b2946e3a7aab1cfd38f306e`);
+
+        const { weatherData } = getWeather;
+
+        const { max_temp } = weatherData;
+        const { low_temp } = weatherData;
+        const { description } = weatherData;
+
+        weather = {
+            max_temp: data.max_temp,
+            low_temp: data.low_temp,
+            description: data.weather.description
+        };
+
+        res.send(weather);
+        console.log(weatherData);
 
     } catch (error) {
         console.log(`${error}`);
@@ -65,8 +83,10 @@ app.post('/analyse', async(req, res) => {
 });
 
 app.get("/all", (req, res) => {
-    res.send(sentiment);
-    console.log(`returning => ${sentiment}`);
+    res.send(wea);
+    res.send(weather);
+    console.log(`returning => ${cords}`);
+    console.log(`weather => ${weather}`);
 });
 
 
