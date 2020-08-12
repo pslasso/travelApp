@@ -1,0 +1,28 @@
+form {
+    border: 1px solid whitesmoke;
+    border-radius: 3px;
+    padding: 40px;
+}
+
+input {
+    padding: 5px 20px;
+    width: 100%;
+    line-height: 16px;
+    margin: 50px auto;
+    display: block;
+}
+
+#name {
+    width: 100%;
+    min-height: 1.5em;
+    max-height: 15em;
+}
+
+#button {
+    width: 20%;
+    &:hover {
+        background: rgba(0, 13, 60, 0.2);
+        color: whitesmoke;
+        cursor: pointer;
+    }
+}
