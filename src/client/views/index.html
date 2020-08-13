@@ -27,23 +27,23 @@
             <section id="form">
                 <form class="" onsubmit="return handleSubmit(event)">
                     <label for="city">My trip to:</label>
-                    <input id="city" type="text" name="input" contenteditable="true" value="" placeholder="City"><br>
+                    <input id="city" type="text" name="input" contenteditable="true" value="" placeholder="City" required><br>
                     <label for="departing">Departing:</label>
-                    <input id="departing" type="date" name="date" max="" value="" valueAsNumber=""><br>
+                    <input id="departing" type="date" name="date" max="" value="" valueAsNumber="" required><br>
                     <input type="submit" name="" value="Save Trip" id="button" onclick="return Client.handleSubmit(event)">
-                    <input type="submit" name="" value="Remove Trip" id="button" onclick="">
+                    <input type="submit" name="" value="Remove Trip" id="button" onclick="return Client.clearUI()">
                 </form>
             </section>
 
             <section id=results>
                 <div id="analysis">
-                    <strong>Sentiment Analisys Results:</strong>
+                    <strong><h3>Your trip details:</h3></strong>
                     <div><br></div>
-                    <div id="agreement"></div>
-                    <div id="confidence"></div>
-                    <div id="irony"></div>
-                    <div id="score_tag"></div>
-                    <div id="subjectivity"></div>
+                    <div id="countdown"></div><br>
+                    <div id="forecast"></div>
+                    <div id="temp"></div>
+                    <div id="description"></div>
+
                 </div>
             </section>
         </section>

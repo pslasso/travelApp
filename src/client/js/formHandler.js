@@ -40,18 +40,13 @@ async function handleSubmit(event) {
 
 
     //Fetches data from server.
-    const cords = await fetch("http://localhost:8081/all");
-    const cordsJson = await cords.json();
+    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }]
 
-    const weather = await fetch("http://localhost:8081/all");
-    const weatherJson = await weather.json();
-
-    console.log(`returning ${weatherJson}`);
-    console.log(cordsJson);
+    console.log(data);
 
 
     //update UI
-    Client.updateUI(cordsJson);
+    Client.updateUI(data);
 
 }
 

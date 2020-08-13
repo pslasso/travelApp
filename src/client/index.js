@@ -1,5 +1,5 @@
 import { handleSubmit } from './js/formHandler'
-import { updateUI } from './js/UiHandler'
+import { updateUI, clearUI } from './js/UiHandler'
 import { setMaxDate } from './js/dateHandler'
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -11,5 +11,6 @@ console.log("CHANGE!!");
 export {
     handleSubmit,
     updateUI,
+    clearUI,
     setMaxDate
 }

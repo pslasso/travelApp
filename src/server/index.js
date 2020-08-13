@@ -82,6 +82,7 @@ app.post('/weather', async(req, res) => {
     }
 });
 
+
 app.get("/all", (req, res) => {
     res.send(cords, weather);
     console.log(`returning => ${cords}`);
