@@ -60,16 +60,18 @@ app.post('/weather', async(req, res) => {
     console.log("req.body", req.body)
     console.log("weatherbit key", WeatherApiKey)
     try {
-        const getWeather = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lats=${req.body.lat}&lon=${req.body.lng}&key=${WeatherApiKey}=&days${req.body.days}`);
+        const getWeather = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.body.lat}&lon=${req.body.lng}&key=${WeatherApiKey}`);
 
         const { data } = await getWeather;
         console.log("data", data)
         console.log("weather", data.data[0].weather)
+        const dayWeather = Math.round(req.body.days / (1000 * 60 * 60 * 24));
+
 
         const weather = {
-            max_temp: data.data[0].max_temp,
-            low_temp: data.data[0].low_temp,
-            description: data.data[0].weather.description
+            max_temp: data.data[dayWeather].max_temp,
+            low_temp: data.data[dayWeather].low_temp,
+            description: data.data[dayWeather].weather.description
         };
 
         res.send(weather);
@@ -81,14 +83,13 @@ app.post('/weather', async(req, res) => {
 });
 
 app.get("/all", (req, res) => {
-    res.send(cords);
-    res.send(weather);
+    res.send(cords, weather);
     console.log(`returning => ${cords}`);
     console.log(`weather => ${weather}`);
 });
 
 app.use(function(req, res, next) {
-    res.status(404).send('Sorry cant find that!');
+    res.status(404).send('Sorry, cant find that!');
 });
 
 // designates what port the app will listen to for incoming requests

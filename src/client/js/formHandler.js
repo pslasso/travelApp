@@ -33,7 +33,7 @@ async function handleSubmit(event) {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify({ lat: geoData.lat, lng: geoData.lng, days: 1 }),
+        body: JSON.stringify({ lat: geoData.lat, lng: geoData.lng, days: days }),
     });
     const weatherData = await weatherRes.json();
     console.log(weatherData);
