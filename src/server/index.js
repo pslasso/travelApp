@@ -13,7 +13,9 @@ dotenv.config();
 
 console.log(__dirname)
 
-let apiKey = process.env.API_KEY;
+//.env
+let WeatherApiKey = process.env.API_KEY;
+let geoUser = process.env.USERNAME;
 
 /* Middleware*/
 
@@ -36,13 +38,9 @@ app.get('/', function(req, res) {
 
 app.post('/coords', async(req, res) => {
     try {
-        const getCoords = await axios.post(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=pslasso`);
+        const getCoords = await axios.post(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=${geoUser}`);
 
         const { data } = getCoords;
-
-        const { lat } = data;
-        const { lng } = data;
-        const { countryName } = data;
 
         cords = {
             lat: data.geonames[0].lat,
@@ -58,15 +56,11 @@ app.post('/coords', async(req, res) => {
     }
 });
 
-app.post('/weather', async(req, res) => {
+app.get('/weather', async(req, res) => {
     try {
-        const getWeather = await axios.post(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${req.body.lat}&lon=${req.body.lng}&days=${req.body.days}&key=416b04807b2946e3a7aab1cfd38f306e`);
+        const getWeather = await axios.post(`https://api.weatherbit.io/v2.0/forecast/daily?lats=${req.body.lay}&lon=${req.body.lng}&key=${WeatherApiKey}=${req.body.days}`);
 
-        const { weatherData } = getWeather;
-
-        const { max_temp } = weatherData;
-        const { low_temp } = weatherData;
-        const { description } = weatherData;
+        const { data } = getWeather;
 
         weather = {
             max_temp: data.max_temp,
@@ -75,7 +69,7 @@ app.post('/weather', async(req, res) => {
         };
 
         res.send(weather);
-        console.log(weatherData);
+        console.log(data);
 
     } catch (error) {
         console.log(`${error}`);
@@ -83,12 +77,15 @@ app.post('/weather', async(req, res) => {
 });
 
 app.get("/all", (req, res) => {
-    res.send(wea);
+    res.send(cords);
     res.send(weather);
     console.log(`returning => ${cords}`);
     console.log(`weather => ${weather}`);
 });
 
+app.use(function(req, res, next) {
+    res.status(404).send('Sorry cant find that!');
+});
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function() {
