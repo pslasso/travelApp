@@ -42,7 +42,7 @@ app.post('/coords', async(req, res) => {
 
         const { data } = getCoords;
 
-        cords = {
+        const cords = {
             lat: data.geonames[0].lat,
             lng: data.geonames[0].lng,
             countryName: data.geonames[0].countryName
@@ -57,15 +57,19 @@ app.post('/coords', async(req, res) => {
 });
 
 app.post('/weather', async(req, res) => {
+    console.log("req.body", req.body)
+    console.log("weatherbit key", WeatherApiKey)
     try {
-        const getWeather = await axios.post(`https://api.weatherbit.io/v2.0/forecast/daily?lats=${req.body.lat}&lon=${req.body.lng}&key=416b04807b2946e3a7aab1cfd38f306e=&days${req.body.days}`);
+        const getWeather = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lats=${req.body.lat}&lon=${req.body.lng}&key=${WeatherApiKey}=&days${req.body.days}`);
 
-        const { data } = getWeather;
+        const { data } = await getWeather;
+        console.log("data", data)
+        console.log("weather", data.data[0].weather)
 
-        weather = {
-            max_temp: data.max_temp,
-            low_temp: data.low_temp,
-            description: data.weather.description
+        const weather = {
+            max_temp: data.data[0].max_temp,
+            low_temp: data.data[0].low_temp,
+            description: data.data[0].weather.description
         };
 
         res.send(weather);

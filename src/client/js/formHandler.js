@@ -38,27 +38,20 @@ async function handleSubmit(event) {
     const weatherData = await weatherRes.json();
     console.log(weatherData);
 
-    //Fetch data from Geonames.
+
+    //Fetches data from server.
     const cords = await fetch("http://localhost:8081/all");
     const cordsJson = await cords.json();
 
-    console.log(`returning ${cords}`);
+    const weather = await fetch("http://localhost:8081/all");
+    const weatherJson = await weather.json();
+
+    console.log(`returning ${weatherJson}`);
     console.log(cordsJson);
-
-    const lat = cordsJson.lat;
-    const lng = cordsJson.lng;
-
-    console.log(lat);
-    console.log(lng);
-
 
 
     //update UI
     Client.updateUI(cordsJson);
-
-
-
-
 
 }
 
