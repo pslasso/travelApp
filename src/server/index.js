@@ -13,7 +13,7 @@ dotenv.config();
 
 console.log(__dirname)
 
-//.env
+//.env credentials
 let WeatherApiKey = process.env.API_KEY;
 let geoUser = process.env.USERNAME;
 
@@ -38,7 +38,7 @@ app.get('/', function(req, res) {
 
 app.post('/coords', async(req, res) => {
     try {
-        const getCoords = await axios.post(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=${geoUser}`);
+        const getCoords = await axios.post(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=pslasso`);
 
         const { data } = getCoords;
 
@@ -56,9 +56,9 @@ app.post('/coords', async(req, res) => {
     }
 });
 
-app.get('/weather', async(req, res) => {
+app.post('/weather', async(req, res) => {
     try {
-        const getWeather = await axios.post(`https://api.weatherbit.io/v2.0/forecast/daily?lats=${req.body.lay}&lon=${req.body.lng}&key=${WeatherApiKey}=${req.body.days}`);
+        const getWeather = await axios.post(`https://api.weatherbit.io/v2.0/forecast/daily?lats=${req.body.lat}&lon=${req.body.lng}&key=416b04807b2946e3a7aab1cfd38f306e=&days${req.body.days}`);
 
         const { data } = getWeather;
 
