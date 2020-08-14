@@ -38,9 +38,21 @@ async function handleSubmit(event) {
     const weatherData = await weatherRes.json();
     console.log(weatherData);
 
+    const photoRes = await fetch("http://localhost:8081/photo", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ city: city }),
+    });
+    const photoData = await photoRes.json();
+    console.log(photoData);
+
 
     //Fetches data from server.
-    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }]
+    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }]
 
     console.log(data);
 

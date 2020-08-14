@@ -16,6 +16,7 @@ console.log(__dirname)
 //.env credentials
 let WeatherApiKey = process.env.API_KEY;
 let geoUser = process.env.USERNAME;
+let pixabayKey = process.env.API_KEY2;
 
 /* Middleware*/
 
@@ -82,11 +83,25 @@ app.post('/weather', async(req, res) => {
     }
 });
 
+app.post('/photo', async(req, res) => {
+    try {
+        const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=places&editors_choice=true`)
+        const { data } = await getPhoto;
+        const photo = {
+            webformatURL: data.hits[0].webformatURL
+        };
+        res.send(photo);
+        console.log(data);
+    } catch (error) {
+        console.log(`${error}`);
+    }
+});
 
 app.get("/all", (req, res) => {
-    res.send(cords, weather);
+    res.send(cords, weather, photo);
     console.log(`returning => ${cords}`);
     console.log(`weather => ${weather}`);
+    console.log(`weather => ${photo}`);
 });
 
 app.use(function(req, res, next) {
