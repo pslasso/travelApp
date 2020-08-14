@@ -44,6 +44,7 @@ async function handleSubmit(event) {
     const weatherData = await weatherRes.json();
     console.log(weatherData);
 
+    /*api call pixabay*/
     const photoRes = await fetch("http://localhost:8081/photo", {
         method: "POST",
         mode: "cors",
@@ -59,9 +60,6 @@ async function handleSubmit(event) {
 
     //Fetches data from server.
     const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }, { tripLong: tripLong }]
-
-    console.log(data);
-
 
     //update UI
     Client.updateUI(data);

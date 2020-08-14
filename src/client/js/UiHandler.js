@@ -21,6 +21,7 @@ function clearUI() {
     const forecast = document.getElementById("forecast").innerHTML = "";
     const temp = document.getElementById("temp").innerHTML = "";
     const description = document.getElementById("description").innerHTML = "";
+    const tripLong = document.getElementById("tripLong").innerHTML = "";
 }
 
 export {

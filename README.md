@@ -1,19 +1,28 @@
-# NPL UDACITY
+# TRAVEL APP UDACITY
 
-This app uses Meaning Cloud NLP to analyse the sentiment of some text.
-The respondes with the following sentiments:
+This app the user to know some fact about his trip, like the wather, duration and a picture of teh city wheres he going.
 
-1. score_tag
-2. agreement
-3. subjectivity
-4. confidence
-5. irony
+# APIs
 
-## Server
+## Geonames
+
+Used for getting the lat and lng of the city by passing the name of it.
+
+## Weatherbit
+
+Used for getting forecast weather by passing the lat and lng of the city.
+This appi provides the forecast for the next 16 days in their free account, so the travel app dates are set in order to can work with the api.
+
+## Pixabay
+
+Used for getting the picture of the city by passing its name.
+
+
+# Server
 
 This app uses express server
 
-## Lenaguages and plugins
+# Lenaguages and plugins
 
 This app use the following:
 
