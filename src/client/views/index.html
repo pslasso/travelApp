@@ -9,9 +9,6 @@
 
 <body>
 
-    <header>
-    </header>
-
     <main>
 
         <section class="app">
@@ -21,7 +18,9 @@
             </div>
 
             <section id="image">
-                <img id="imageSRS" srs="" />
+                <div id="imageContainer">
+                    <img id="imageSRS" src="" />
+                </div>
             </section>
 
             <section id="form">
@@ -30,6 +29,8 @@
                     <input id="city" type="text" name="input" contenteditable="true" value="" placeholder="City" required><br>
                     <label for="departing">Departing:</label>
                     <input id="departing" type="date" name="date" max="" value="" valueAsNumber="" required><br>
+                    <label for="returning">Returning:</label>
+                    <input id="returning" type="date" name="date" max="" value="" valueAsNumber="" required><br>
                     <input type="submit" name="" value="Save Trip" id="button" onclick="return Client.handleSubmit(event)">
                     <input type="submit" name="" value="Remove Trip" id="button" onclick="return Client.clearUI()">
                 </form>
@@ -40,6 +41,7 @@
                     <strong><h3>Your trip details:</h3></strong>
                     <div><br></div>
                     <div id="countdown"></div><br>
+                    <div id="tripLong"></div><br>
                     <div id="forecast"></div>
                     <div id="temp"></div>
                     <div id="description"></div>
@@ -48,6 +50,16 @@
             </section>
         </section>
     </main>
+
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
 
 </body>
 

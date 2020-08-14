@@ -9,7 +9,8 @@ function updateUI(data) {
     // sets the img
     const photoURL = `${data[4].photoData.webformatURL}`
     console.log(data[4].photoData.webformatURL);
-    const photo = document.getElementById("imageSRS").srs = `${photoURL}`;
+    const photo = document.getElementById("imageSRS").src = `${photoURL}`;
+    const tripLong = document.getElementById("tripLong").innerHTML = `Your trip will last ${data[5].tripLong} days, enjoy it!`;
 
 }
 

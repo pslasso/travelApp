@@ -10,10 +10,15 @@ input {
     margin: 10px;
 }
 
-#name {
-    width: 150px;
-    min-height: 1.5em;
-    max-height: 15em;
+#city {
+    width: 50%;
+    height: 2em;
+}
+
+#departing,
+#returning {
+    width: 50%;
+    height: 2em;
 }
 
 #button {

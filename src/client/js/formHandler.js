@@ -10,6 +10,12 @@ async function handleSubmit(event) {
     let days = departure - date.getTime();
     console.log(`days to go:${Math.round(days/ (1000*60*60*24))}`);
 
+    //calculates the trip long
+
+    let returning = document.getElementById("returning").valueAsNumber;
+    let tripLong = (Math.round((returning - departure) / (1000 * 60 * 60 * 24)));
+
+
 
     /*api call geonames*/
     const geoRes = await fetch("http://localhost:8081/coords", {
@@ -52,7 +58,7 @@ async function handleSubmit(event) {
 
 
     //Fetches data from server.
-    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }]
+    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }, { tripLong: tripLong }]
 
     console.log(data);
 
