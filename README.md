@@ -39,3 +39,11 @@ This app use the following:
 * Scss
 * HTML
 
+# .env
+
+You must add the following to the .env file:
+
+* For Geonames API: USERNAME
+* For Weatherbit API: API_KEY
+* For Pixabay API: API_KEY2
+

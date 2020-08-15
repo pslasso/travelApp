@@ -21,7 +21,8 @@ input {
     height: 2em;
 }
 
-#button {
+#button,
+#clearButton {
     width: 120px;
     &:hover {
         background: rgba(0, 13, 60, 0.2);

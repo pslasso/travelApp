@@ -17,6 +17,9 @@ function updateUI(data) {
 //clears the UI
 
 function clearUI() {
+    document.getElementById("city").required = false;
+    document.getElementById("departing").required = false;
+    document.getElementById("returning").required = false;
     const countdown = document.getElementById("countdown").innerHTML = "";
     const forecast = document.getElementById("forecast").innerHTML = "";
     const temp = document.getElementById("temp").innerHTML = "";
