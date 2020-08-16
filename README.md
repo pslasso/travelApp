@@ -47,3 +47,9 @@ You must add the following to the .env file:
 * For Weatherbit API: API_KEY
 * For Pixabay API: API_KEY2
 
+# Build Scripts
+
+* npm run build-prod
+* npm start
+* npm run build-dev
+
