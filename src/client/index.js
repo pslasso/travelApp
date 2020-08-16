@@ -8,8 +8,8 @@ import './styles/header.scss'
 
 console.log("CHANGE!!");
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("button").addEventListener("Click", handleSubmit(event));
-    document.getElementById("clearButton").addEventListener("Click", clearUI());
+    document.getElementById("button").addEventListener("click", handleSubmit);
+    document.getElementById("clearButton").addEventListener("click", clearUI);
 });
 
 export {
