@@ -58,4 +58,5 @@ You must add the following to the .env file:
 * npm run build-prod
 * npm start
 * npm run build-dev
+* npm test (for testing)
 

@@ -87,7 +87,7 @@ app.post('/weather', async(req, res) => {
 
 app.post('/photo', async(req, res) => {
     try {
-        const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=travel&editors_choice=true`)
+        const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=places&order=popular`)
         const { data } = await getPhoto;
         const photo = {
             webformatURL: data.hits[0].webformatURL
@@ -115,4 +115,4 @@ app.listen(8081, function() {
     console.log('Example app listening on port 8081!')
 });
 
-export { app };
+module.exports = app;
