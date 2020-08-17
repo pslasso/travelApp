@@ -5,6 +5,7 @@ import './styles/resets.scss'
 import './styles/base.scss'
 import './styles/form.scss'
 import './styles/header.scss'
+import 'regenerator-runtime/runtime';
 
 console.log("CHANGE!!");
 document.addEventListener("DOMContentLoaded", () => {

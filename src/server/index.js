@@ -5,6 +5,7 @@ const express = require('express');
 var request = require("request");
 const dotenv = require('dotenv');
 
+
 const app = express();
 
 app.use(express.static('dist'))
@@ -66,6 +67,7 @@ app.post('/weather', async(req, res) => {
         const { data } = await getWeather;
         console.log("data", data)
         console.log("weather", data.data[0].weather)
+            //Gets the number of days to departure
         const dayWeather = Math.round(req.body.days / (1000 * 60 * 60 * 24));
 
 
@@ -85,7 +87,7 @@ app.post('/weather', async(req, res) => {
 
 app.post('/photo', async(req, res) => {
     try {
-        const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=places&editors_choice=true`)
+        const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=travel&editors_choice=true`)
         const { data } = await getPhoto;
         const photo = {
             webformatURL: data.hits[0].webformatURL
@@ -112,3 +114,5 @@ app.use(function(req, res, next) {
 app.listen(8081, function() {
     console.log('Example app listening on port 8081!')
 });
+
+export { app };

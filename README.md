@@ -24,7 +24,13 @@ This app uses express server
 
 # Lenaguages and plugins
 
-This app use the following:
+## For async fuctions to run propperly:
+
+npm install --save @babel/polyfill
+npm install --save-dev @babel/plugin-transform-runtime
+npm install --save @babel/runtime
+
+## This app use the following:
 
 * node.js
 * webpack
