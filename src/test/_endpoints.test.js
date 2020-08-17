@@ -1,15 +1,9 @@
-const request = require('supertest')
-
 import { app } from '../server/index.js'
+const supertest = require('supertest')
+const request = supertest(app);
 
-describe('Post Endpoints', () => {
-    it('should create a new post', async() => {
-        const res = await request(app)
-            .post('/cords')
-            .send({
-                city: "london"
-            })
-        expect(res.statusCode).toEqual(200)
-        expect(res.body).toHaveProperty('city')
-    })
-})
+it("gets the test endpoint", async done => {
+    const response = await request.post("/coords");
+    expect(response.status).toBe(200);
+    done();
+});
