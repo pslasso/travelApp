@@ -60,7 +60,7 @@ async function handleSubmit(event) {
 
     //Fetches data from server.
     const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }, { tripLong: tripLong }]
-
+    document.querySelector("#clearButton").removeAttribute("disabled");
     //update UI
     Client.updateUI(data);
 

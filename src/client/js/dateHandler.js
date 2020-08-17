@@ -14,6 +14,7 @@ function setMaxDate() {
 // sets the min returning date as the departure date
 
 function setReturning() {
+
     document.getElementById("departing").addEventListener("blur", getValue);
 
     function getValue() {
@@ -23,6 +24,7 @@ function setReturning() {
     }
 
 }
+
 
 
 setReturning();
