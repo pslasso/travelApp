@@ -44,6 +44,7 @@ async function handleSubmit(event) {
     const weatherData = await weatherRes.json();
     console.log(weatherData);
 
+
     /*api call pixabay*/
     const photoRes = await fetch("http://localhost:8081/photo", {
         method: "POST",
@@ -52,7 +53,7 @@ async function handleSubmit(event) {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
         },
-        body: JSON.stringify({ city: city }),
+        body: JSON.stringify({ city: city, countryName: geoData.countryName }),
     });
     const photoData = await photoRes.json();
     console.log(photoData);

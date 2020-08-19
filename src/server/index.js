@@ -88,12 +88,27 @@ app.post('/weather', async(req, res) => {
 app.post('/photo', async(req, res) => {
     try {
         const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=places&order=popular`)
-        const { data } = await getPhoto;
-        const photo = {
-            webformatURL: data.hits[0].webformatURL
-        };
-        res.send(photo);
-        console.log(data);
+        const { code } = getPhoto.status;
+        if (code == "200") {
+            const { data } = await getPhoto;
+            const photo = {
+                webformatURL: data.hits[0].webformatURL
+            };
+            res.send(photo);
+            console.log(data);
+        } else {
+            // gets a photo of the country if city isn't founded
+            if (code !== "200") {
+                const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.countryName}&image_type=photo&category=places&order=popular`)
+                const { data } = await getPhoto;
+                const photo = {
+                    webformatURL: data.hits[0].webformatURL
+                };
+                res.send(photo);
+                console.log(data);
+            }
+        }
+
     } catch (error) {
         console.log(`${error}`);
     }
