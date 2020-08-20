@@ -9,6 +9,7 @@ const dotenv = require('dotenv');
 const app = express();
 
 app.use(express.static('dist'))
+app.use(express.static('src'));
 
 dotenv.config();
 
@@ -74,7 +75,8 @@ app.post('/weather', async(req, res) => {
         const weather = {
             max_temp: data.data[dayWeather].max_temp,
             low_temp: data.data[dayWeather].low_temp,
-            description: data.data[dayWeather].weather.description
+            description: data.data[dayWeather].weather.description,
+            icon: data.data[dayWeather].weather.icon
         };
 
         res.send(weather);

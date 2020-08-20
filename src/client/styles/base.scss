@@ -16,6 +16,7 @@
         .app {
             background: linear-gradient(0deg, rgba(136, 203, 171, 1) 0%, rgba(0, 13, 60, 1) 100%);
             display: grid;
+            width: fit-content;
             max-width: 800px;
             margin: auto;
             grid-template-areas: "tl tl tl tl tl tl tl tl" "img img img img img img fr fr" "img img img img img img res res";
@@ -31,11 +32,10 @@
         }
         
         #image {
+            display: none;
             grid-area: img;
-            border: 1px solid whitesmoke;
             height: 100%;
             width: 100%;
-            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -47,7 +47,12 @@
         }
         
         #results {
+            display: none;
             grid-area: res;
+        }
+        
+        #details {
+            font-size: 1.5em;
         }
         
         @media(min-width: 150px) and (max-width: 600px) {

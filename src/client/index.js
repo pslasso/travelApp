@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("clearButton").addEventListener("click", clearUI);
 });
 
+
+
 export {
     handleSubmit,
     updateUI,

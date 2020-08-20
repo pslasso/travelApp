@@ -3,7 +3,7 @@ form {
     border: 1px solid whitesmoke;
     border-radius: 3px;
     padding: 10px;
-    width: auto;
+    width: max-content;
 }
 
 input {
@@ -19,6 +19,12 @@ input {
 #returning {
     width: 50%;
     height: 2em;
+}
+
+#icon {
+    height: 50px;
+    width: 50px;
+    background-size: contain;
 }
 
 #button,
