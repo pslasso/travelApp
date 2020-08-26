@@ -1,5 +1,5 @@
 import { handleSubmit } from './js/formHandler'
-import { updateUI, clearUI } from './js/UiHandler'
+import { updateUI, clearUI, printUI } from './js/UiHandler'
 import { setMaxDate, setReturning } from './js/dateHandler'
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -11,6 +11,7 @@ console.log("CHANGE!!");
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("button").addEventListener("click", handleSubmit);
     document.getElementById("clearButton").addEventListener("click", clearUI);
+    document.getElementById("printButton").addEventListener("click", printUI);
 });
 
 
@@ -20,5 +21,6 @@ export {
     updateUI,
     clearUI,
     setMaxDate,
-    setReturning
+    setReturning,
+    printUI
 }

@@ -8,13 +8,11 @@ async function handleSubmit(event) {
     let departure = document.getElementById("departing").valueAsNumber;
     let date = new Date();
     let days = departure - date.getTime();
-    console.log(`days to go:${Math.round(days/ (1000*60*60*24))}`);
 
     //calculates the trip long
 
     let returning = document.getElementById("returning").valueAsNumber;
     let tripLong = (Math.round((returning - departure) / (1000 * 60 * 60 * 24)));
-
 
 
     /*api call geonames*/

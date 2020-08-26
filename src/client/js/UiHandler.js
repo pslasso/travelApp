@@ -11,9 +11,7 @@ function updateUI(data) {
     // populates the UI
     const daysof = (Math.round(data[3].days / (1000 * 60 * 60 * 24)) + 1);
     const city = JSON.stringify(data[2].city);
-    console.log(city);
     const cityReg = `${city[1].toUpperCase(city)}${city.substring(2, (city.length -1)).toLowerCase(city)}`;
-    console.log(cityReg);
     document.querySelector("#countdown").innerHTML = `Your trip to ${cityReg}, ${data[0].geoData.countryName} is ${daysof} days away.`;
     document.querySelector("#forecast").innerHTML = `Forecast for departure date:`;
     const icons = `http://localhost:8081/client/media/icons/${data[1].weatherData.icon}.png`;
@@ -53,7 +51,12 @@ function clearUI() {
     document.querySelector("#tripLong").innerHTML = "";
 }
 
+function printUI() {
+    window.print();
+}
+
 export {
     updateUI,
-    clearUI
+    clearUI,
+    printUI
 }
