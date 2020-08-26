@@ -59,8 +59,22 @@ async function handleSubmit(event) {
     console.log(photoData);
 
 
+    /*api call Restcountries*/
+    const countryRes = await fetch("http://localhost:8081/country", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ countryName: geoData.countryName }),
+    });
+    const countryData = await countryRes.json();
+    console.log(countryData);
+
+
     //Fetches data from server.
-    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }, { tripLong: tripLong }]
+    const data = [{ geoData }, { weatherData }, { city: city }, { days: days }, { photoData }, { tripLong: tripLong }, { countryData }]
     document.querySelector("#clearButton").removeAttribute("disabled");
     //update UI
     Client.updateUI(data);

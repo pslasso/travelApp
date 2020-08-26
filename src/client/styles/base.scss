@@ -19,11 +19,15 @@
             width: fit-content;
             max-width: 800px;
             margin: auto;
-            grid-template-areas: "tl tl tl tl tl tl tl tl" "img img img img img img fr fr" "img img img img img img res res";
+            grid-template-areas: "tl tl" "img form" "img res";
+            grid-template-columns: 400px 1fr;
+            grid-template-rows: 50px 1fr;
             gap: 20px;
             padding: 10px;
             border: 1px solid whitesmoke;
         }
+        
+        #form {}
         
         #analysis {
             border: 1px solid whitesmoke;
@@ -34,16 +38,14 @@
         #image {
             display: none;
             grid-area: img;
-            height: 100%;
             width: 100%;
-            align-items: center;
-            justify-content: center;
+            align-content: space-around;
         }
         
-        #imageSRS {
+        #imageSRS,
+        #imageSRS2 {
             object-fit: contain;
-            width: 99%;
-            height: auto;
+            width: 100%;
         }
         
         #results {
@@ -51,7 +53,8 @@
             grid-area: res;
         }
         
-        #details {
+        #details,
+        #country {
             font-size: 1.5em;
         }
         

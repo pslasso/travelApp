@@ -39,6 +39,7 @@ app.get('/', function(req, res) {
 });
 
 
+//Geonames API
 app.post('/coords', async(req, res) => {
     try {
         const getCoords = await axios.post(`http://api.geonames.org/searchJSON?q=${req.body.city}&maxRows=1&username=pslasso`);
@@ -59,6 +60,7 @@ app.post('/coords', async(req, res) => {
     }
 });
 
+//Weatherbit API
 app.post('/weather', async(req, res) => {
     console.log("req.body", req.body)
     console.log("weatherbit key", WeatherApiKey)
@@ -73,10 +75,10 @@ app.post('/weather', async(req, res) => {
 
 
         const weather = {
-            max_temp: data.data[dayWeather].max_temp,
-            low_temp: data.data[dayWeather].low_temp,
-            description: data.data[dayWeather].weather.description,
-            icon: data.data[dayWeather].weather.icon
+            max_temp: data.data[dayWeather + 1].max_temp,
+            low_temp: data.data[dayWeather + 1].low_temp,
+            description: data.data[dayWeather + 1].weather.description,
+            icon: data.data[dayWeather + 1].weather.icon
         };
 
         res.send(weather);
@@ -87,6 +89,7 @@ app.post('/weather', async(req, res) => {
     }
 });
 
+//Pixabay API
 app.post('/photo', async(req, res) => {
     try {
         const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.city}&image_type=photo&category=places&order=popular`)
@@ -94,7 +97,8 @@ app.post('/photo', async(req, res) => {
         if (code == "200") {
             const { data } = await getPhoto;
             const photo = {
-                webformatURL: data.hits[0].webformatURL
+                webformatURL: data.hits[0].webformatURL,
+                webformatURL2: data.hits[1].webformatURL
             };
             res.send(photo);
             console.log(data);
@@ -104,7 +108,8 @@ app.post('/photo', async(req, res) => {
                 const getPhoto = await axios.get(`https://pixabay.com/api/?key=${pixabayKey}&q=${req.body.countryName}&image_type=photo&category=places&order=popular`)
                 const { data } = await getPhoto;
                 const photo = {
-                    webformatURL: data.hits[0].webformatURL
+                    webformatURL: data.hits[0].webformatURL,
+                    webformatURL2: data.hits[1].webformatURL
                 };
                 res.send(photo);
                 console.log(data);
@@ -116,11 +121,35 @@ app.post('/photo', async(req, res) => {
     }
 });
 
+//Restcountries API
+app.post('/country', async(req, res) => {
+    try {
+        const getCountry = await axios.get(`https://restcountries.eu/rest/v2/name/${req.body.countryName}`);
+
+        const { data } = getCountry;
+
+        const country = {
+            capital: data[0].capital,
+            currencies: data[0].currencies[0].name,
+            languages: data[0].languages[0].name
+        };
+
+        res.send(country);
+        console.log(data);
+
+    } catch (error) {
+        console.log(`${error}`);
+    }
+});
+
+
+//Returns data from APIs
 app.get("/all", (req, res) => {
-    res.send(cords, weather, photo);
+    res.send(cords, weather, photo, country);
     console.log(`returning => ${cords}`);
     console.log(`weather => ${weather}`);
     console.log(`weather => ${photo}`);
+    console.log(`weather => ${country}`);
 });
 
 app.use(function(req, res, next) {
